@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# 重定向配置 - SPA 友好
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
