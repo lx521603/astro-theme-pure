@@ -1,12 +1,23 @@
 [build]
-  command = "npm run build"
+  command = "bun run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "18"
 
-# 重定向配置 - SPA 友好
+# 关键：设置 Bun 环境
+[build.environment]
+  BUN_VERSION = "1.0.0"  # 使用您项目需要的 Bun 版本
+
+# SPA 路由支持 - 解决 404 问题的关键
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# 可选的头部配置
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
